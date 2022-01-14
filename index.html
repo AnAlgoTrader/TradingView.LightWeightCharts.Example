@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript"
-        src="./node_modules/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <script type="text/javascript" src="node_modules/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 </head>
 
 <body style="padding: 0; margin: 0;">
@@ -30,6 +29,16 @@
                     mode: LightweightCharts.CrosshairMode.Normal,
                 }
             });
+			
+		chart.applyOptions({
+            timeScale: {
+                borderVisible: false,
+                borderColor: '#fff000',
+                visible: true,
+                timeVisible: true,
+                minBarSpacing: 0.0,
+            }   
+        }); 
 
         const symbol1 = 'DEU.IDXEUR';
         const lineSeries1 = chart.addLineSeries({
@@ -43,28 +52,20 @@
             lineWidth: 1,
         });
 
-        fetch(`./InputData/${symbol1}_lineSeries.json`)
+        fetch(`InputData/${symbol1}_lineSeries.json`)
             .then(response => response.text())
             .then(data => {
                 var chartData = JSON.parse(data);
                 lineSeries1.setData(chartData);
             });
-        fetch(`./InputData/${symbol2}_lineSeries.json`)
+        fetch(`InputData/${symbol2}_lineSeries.json`)
             .then(response => response.text())
             .then(data => {
                 var chartData = JSON.parse(data);
                 lineSeries2.setData(chartData);
             });
         document.title = `Y:${symbol1} - B:${symbol2}`;
-
-        chart.applyOptions({
-            timeScale: {
-                borderVisible: false,
-                borderColor: '#fff000',
-                visible: true,
-                timeVisible: true,
-            }
-        });
+		
     </script>
 </body>
 
