@@ -48,6 +48,11 @@
         lineWidth: 1,
       });
 
+      const lineSeries2 = chart.addLineSeries({
+        color: "rgba(138, 171, 238, 1)",
+        lineWidth: 1,
+      });
+
       chart.applyOptions({
             timeScale: {
                 borderVisible: false,
@@ -56,7 +61,7 @@
                 timeVisible: true,
                 minBarSpacing: 0.0,
             }   
-        });
+        }); 
 
       function getRandomArbitrary(min, max) {
           return Math.random() * (max - min) + min;
